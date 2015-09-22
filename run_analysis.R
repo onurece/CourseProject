@@ -49,7 +49,9 @@ df <- all[,col] # Column order changes, may need to modify c() above
 ## Use descriptive activity names to name the activities in the data set
 # Add activity labels as names and remove activity numbers column
 df <- merge(df, actLabels, by.x = "ActivityLabels", by.y="V1")
-# Change activity labels column name
+# Matched columns (w/ activity numbers) becomes the first column, delete it
+df <- df[,-1]
+# Change the new activity labels column name
 names(df)[ncol(df)] <- "ActivityLabels"
 
 
