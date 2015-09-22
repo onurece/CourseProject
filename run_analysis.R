@@ -57,6 +57,9 @@ names(df)[ncol(df)] <- "ActivityLabels"
 
 # From the data set in step 4, creates a second, independent tidy data set with
 # the average of each variable for each activity and each subject
-df2 <- df
+library(reshape2)
+allMelted <- melt(df, id=c("Subjects", "ActivityLabels"))
+df2 <- dcast(allMelted, Subjects + ActivityLabels + variable ~ ., mean)
+names(df2)[4] <- "Mean"
 
-write.table("df2.txt", row.name=FALSE)
+write.table(df2, "df2.txt", row.name=FALSE)
