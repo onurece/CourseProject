@@ -31,6 +31,7 @@ allSubjects <- rbind(trainSubjects, testSubjects)
 # Add activity labels and subjects as new columns
 all <- cbind(all, allActLabels, allSubjects)
 
+## Appropriately label the data set with descriptive variable names
 # Add column names
 names(all) <- c(as.character(features[,2]), "ActivityLabels", "Subjects")
 
@@ -55,6 +56,5 @@ names(df)[ncol(df)] <- "ActivityLabels"
 # From the data set in step 4, creates a second, independent tidy data set with
 # the average of each variable for each activity and each subject
 df2 <- df
-
 
 write.table("df2.txt", row.name=FALSE)
