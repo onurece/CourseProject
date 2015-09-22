@@ -16,3 +16,5 @@ vignettes/*.pdf
 UCI HAR Dataset/*.*
 .zip
 .txt
+*.zip
+*.txt

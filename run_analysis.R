@@ -56,4 +56,5 @@ names(df)[ncol(df)] <- "ActivityLabels"
 # the average of each variable for each activity and each subject
 df2 <- df
 
+
 write.table("df2.txt", row.name=FALSE)
