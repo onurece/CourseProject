@@ -19,10 +19,6 @@ test <- read.table("UCI HAR Dataset/test/X_test.txt")
 testActLabels <- read.table("UCI HAR Dataset/test/y_test.txt")
 testSubjects <- read.table("UCI HAR Dataset/test/subject_test.txt")
 
-# Global info
-features <- read.table("UCI HAR Dataset/features.txt")
-actLabels <- read.table("UCI HAR Dataset/activity_labels.txt")
-
 # Combine train and test data
 all <- rbind(train, test)
 allActLabels <- rbind(trainActLabels, testActLabels)
@@ -32,6 +28,8 @@ allSubjects <- rbind(trainSubjects, testSubjects)
 all <- cbind(all, allActLabels, allSubjects)
 
 ## Appropriately label the data set with descriptive variable names
+# Get feature names from features.txt
+features <- read.table("UCI HAR Dataset/features.txt")
 # Add column names
 names(all) <- c(as.character(features[,2]), "ActivityLabels", "Subjects")
 
@@ -48,6 +46,7 @@ df <- all[,col] # Column order changes, may need to modify c() above
 
 ## Use descriptive activity names to name the activities in the data set
 # Add activity labels as names and remove activity numbers column
+actLabels <- read.table("UCI HAR Dataset/activity_labels.txt")
 df <- merge(df, actLabels, by.x = "ActivityLabels", by.y="V1")
 # Matched columns (w/ activity numbers) becomes the first column, delete it
 df <- df[,-1]
@@ -55,8 +54,8 @@ df <- df[,-1]
 names(df)[ncol(df)] <- "ActivityLabels"
 
 
-# From the data set in step 4, creates a second, independent tidy data set with
-# the average of each variable for each activity and each subject
+## From the data set in step 4, creates a second, independent tidy data set with
+## the average of each variable for each activity and each subject
 library(reshape2)
 allMelted <- melt(df, id=c("Subjects", "ActivityLabels"))
 df2 <- dcast(allMelted, Subjects + ActivityLabels ~ variable, mean)
