@@ -178,60 +178,7 @@ img {
 </div>
 <div id="transformations-on-the-data" class="section level1">
 <h1>Transformations on the Data</h1>
-<p>The following section describes the work that has been performed to clean up the raw data.</p>
-<ol style="list-style-type: decimal">
-<li>Training and test data sets have been combined using <code>rbind</code>. Similarly, labels and subjects of training and test data have been combined.</li>
-</ol>
-<pre class="r"><code># Read training data
-train &lt;- read.table(&quot;UCI HAR Dataset/train/X_train.txt&quot;)
-trainActLabels &lt;- read.table(&quot;UCI HAR Dataset/train/y_train.txt&quot;)
-trainSubjects &lt;- read.table(&quot;UCI HAR Dataset/train/subject_train.txt&quot;)
-
-# Read test data
-test &lt;- read.table(&quot;UCI HAR Dataset/test/X_test.txt&quot;)
-testActLabels &lt;- read.table(&quot;UCI HAR Dataset/test/y_test.txt&quot;)
-testSubjects &lt;- read.table(&quot;UCI HAR Dataset/test/subject_test.txt&quot;)
-
-# Combine train and test data
-all &lt;- rbind(train, test)
-allActLabels &lt;- rbind(trainActLabels, testActLabels)
-allSubjects &lt;- rbind(trainSubjects, testSubjects)</code></pre>
-<p>The resulting three data sets have been combined with <code>cbind</code> to create one data set.</p>
-<pre class="r"><code>all &lt;- cbind(all, allActLabels, allSubjects)</code></pre>
-<ol start="2" style="list-style-type: decimal">
-<li>Names of the features have been added as column names</li>
-</ol>
-<pre class="r"><code># Get feature names from features.txt
-features &lt;- read.table(&quot;UCI HAR Dataset/features.txt&quot;)
-# Add column names
-names(all) &lt;- c(as.character(features[,2]), &quot;ActivityLabels&quot;, &quot;Subjects&quot;)</code></pre>
-<ol start="3" style="list-style-type: decimal">
-<li>Columns that have the words “mean” or “std” were identified using <code>grep</code> and the remaining measurements have been removed.</li>
-</ol>
-<pre class="r"><code># Find columns that contain &quot;mean&quot; or &quot;std&quot; in their names
-meanCol &lt;- grep(&quot;mean&quot;, names(all))
-stdCol &lt;- grep(&quot;std&quot;, names(all))
-# Use unique just in case there are duplicates. Keep last two columns for activity labels and subjects
-col &lt;- unique(c(meanCol, stdCol, ncol(all)-1, ncol(all))) 
-
-df &lt;- all[,col]</code></pre>
-<ol start="4" style="list-style-type: decimal">
-<li>Activity numbers have been replaced with names by merging the data frame from the previous step with “activity_labels.txt”.</li>
-</ol>
-<pre class="r"><code>actLabels &lt;- read.table(&quot;UCI HAR Dataset/activity_labels.txt&quot;)
-df &lt;- merge(df, actLabels, by.x = &quot;ActivityLabels&quot;, by.y=&quot;V1&quot;)
-# Matched columns (w/ activity numbers) becomes the first column, delete it
-df &lt;- df[,-1]
-# Change the new activity labels column name
-names(df)[ncol(df)] &lt;- &quot;ActivityLabels&quot;</code></pre>
-<ol start="5" style="list-style-type: decimal">
-<li>Using <code>reshape2</code> library the data frame has been <code>melt</code>ed to have rows by subject and activity. Then <code>dcast</code>ed to take average of each variable for each activity and each subject. Last, the final data frame has been written to .txt file.</li>
-</ol>
-<pre class="r"><code>library(reshape2)
-allMelted &lt;- melt(df, id=c(&quot;Subjects&quot;, &quot;ActivityLabels&quot;))
-df2 &lt;- dcast(allMelted, Subjects + ActivityLabels ~ variable, mean)
-
-write.table(df2, &quot;df2.txt&quot;, row.name=FALSE)</code></pre>
+<p>Refer to README.md for details on how the script works.</p>
 </div>
 
 
