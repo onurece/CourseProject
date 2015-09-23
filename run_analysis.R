@@ -61,3 +61,6 @@ allMelted <- melt(df, id=c("Subjects", "ActivityLabels"))
 df2 <- dcast(allMelted, Subjects + ActivityLabels ~ variable, mean)
 
 write.table(df2, "df2.txt", row.name=FALSE)
+
+library(knitr)
+knit('CodeBook.Rmd')
