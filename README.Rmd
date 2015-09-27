@@ -1,6 +1,5 @@
----
-title: "README"
----
+README
+=====================
 
 The following section describes the work that has been performed to clean up the raw data.
 

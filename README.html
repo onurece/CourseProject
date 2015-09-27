@@ -67,118 +67,63 @@ img {
 
 
 
-<div id="getting-and-cleaning-data-course-project" class="section level1">
-<h1>Getting and Cleaning Data Course Project</h1>
-<div id="the-raw-data" class="section level2">
-<h2>The Raw Data</h2>
-<p>The experiments have been carried out with a group of 30 volunteers within an age bracket of 19-48 years. Each person performed six activities (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING) wearing a smartphone (Samsung Galaxy S II) on the waist. Using its embedded accelerometer and gyroscope, we captured 3-axial linear acceleration and 3-axial angular velocity at a constant rate of 50Hz. The experiments have been video-recorded to label the data manually. The obtained dataset has been randomly partitioned into two sets, where 70% of the volunteers was selected for generating the training data and 30% the test data.</p>
-<p>The sensor signals (accelerometer and gyroscope) were pre-processed by applying noise filters and then sampled in fixed-width sliding windows of 2.56 sec and 50% overlap (128 readings/window). The sensor acceleration signal, which has gravitational and body motion components, was separated using a Butterworth low-pass filter into body acceleration and gravity. The gravitational force is assumed to have only low frequency components, therefore a filter with 0.3 Hz cutoff frequency was used. From each window, a vector of features was obtained by calculating variables from the time and frequency domain. See ‘features_info.txt’ for more details.</p>
-<div id="for-each-record-it-is-provided" class="section level3">
-<h3>For each record it is provided:</h3>
-<ul>
-<li>Triaxial acceleration from the accelerometer (total acceleration) and the estimated body acceleration.</li>
-<li>Triaxial Angular velocity from the gyroscope.</li>
-<li>A 561-feature vector with time and frequency domain variables.</li>
-<li>Its activity label.</li>
-<li>An identifier of the subject who carried out the experiment.</li>
-</ul>
-</div>
-<div id="the-dataset-includes-the-following-files" class="section level3">
-<h3>The dataset includes the following files:</h3>
-<ul>
-<li>‘README.txt’</li>
-<li>‘features_info.txt’: Shows information about the variables used on the feature vector.</li>
-<li>‘features.txt’: List of all features.</li>
-<li>‘activity_labels.txt’: Links the class labels with their activity name.</li>
-<li>‘train/X_train.txt’: Training set.</li>
-<li>‘train/y_train.txt’: Training labels.</li>
-<li>‘test/X_test.txt’: Test set.</li>
-<li>‘test/y_test.txt’: Test labels.</li>
-</ul>
-<p>The following files are available for the train and test data. Their descriptions are equivalent.</p>
-<ul>
-<li>‘train/subject_train.txt’: Each row identifies the subject who performed the activity for each window sample. Its range is from 1 to 30.</li>
-<li>‘train/Inertial Signals/total_acc_x_train.txt’: The acceleration signal from the smartphone accelerometer X axis in standard gravity units ‘g’. Every row shows a 128 element vector. The same description applies for the ‘total_acc_x_train.txt’ and ‘total_acc_z_train.txt’ files for the Y and Z axis.</li>
-<li>‘train/Inertial Signals/body_acc_x_train.txt’: The body acceleration signal obtained by subtracting the gravity from the total acceleration.</li>
-<li>‘train/Inertial Signals/body_gyro_x_train.txt’: The angular velocity vector measured by the gyroscope for each window sample. The units are radians/second.</li>
-</ul>
-</div>
-<div id="notes" class="section level3">
-<h3>Notes:</h3>
-<ul>
-<li>Features are normalized and bounded within [-1,1].</li>
-<li>Each feature vector is a row on the text file.</li>
-</ul>
-<p>For more information about this dataset contact: <a href="mailto:activityrecognition@smartlab.ws">activityrecognition@smartlab.ws</a></p>
-</div>
-<div id="license" class="section level3">
-<h3>License:</h3>
-<p>Use of this dataset in publications must be acknowledged by referencing the following publication [1]</p>
-<p>[1] Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L. Reyes-Ortiz. Human Activity Recognition on Smartphones using a Multiclass Hardware-Friendly Support Vector Machine. International Workshop of Ambient Assisted Living (IWAAL 2012). Vitoria-Gasteiz, Spain. Dec 2012</p>
-<p>This dataset is distributed AS-IS and no responsibility implied or explicit can be addressed to the authors or their institutions for its use or misuse. Any commercial use is prohibited.</p>
-<p>Jorge L. Reyes-Ortiz, Alessandro Ghio, Luca Oneto, Davide Anguita. November 2012.</p>
-</div>
-</div>
-<div id="variables-feature-selection" class="section level2">
-<h2>Variables (Feature Selection)</h2>
-<p>The features selected for this database come from the accelerometer and gyroscope 3-axial raw signals tAcc-XYZ and tGyro-XYZ. These time domain signals (prefix ‘t’ to denote time) were captured at a constant rate of 50 Hz. Then they were filtered using a median filter and a 3rd order low pass Butterworth filter with a corner frequency of 20 Hz to remove noise. Similarly, the acceleration signal was then separated into body and gravity acceleration signals (tBodyAcc-XYZ and tGravityAcc-XYZ) using another low pass Butterworth filter with a corner frequency of 0.3 Hz.</p>
-<p>Subsequently, the body linear acceleration and angular velocity were derived in time to obtain Jerk signals (tBodyAccJerk-XYZ and tBodyGyroJerk-XYZ). Also the magnitude of these three-dimensional signals were calculated using the Euclidean norm (tBodyAccMag, tGravityAccMag, tBodyAccJerkMag, tBodyGyroMag, tBodyGyroJerkMag).</p>
-<p>Finally a Fast Fourier Transform (FFT) was applied to some of these signals producing fBodyAcc-XYZ, fBodyAccJerk-XYZ, fBodyGyro-XYZ, fBodyAccJerkMag, fBodyGyroMag, fBodyGyroJerkMag. (Note the ‘f’ to indicate frequency domain signals).</p>
-<p>These signals were used to estimate variables of the feature vector for each pattern:<br />
-‘-XYZ’ is used to denote 3-axial signals in the X, Y and Z directions.</p>
-<ul>
-<li>tBodyAcc-XYZ</li>
-<li>tGravityAcc-XYZ</li>
-<li>tBodyAccJerk-XYZ</li>
-<li>tBodyGyro-XYZ</li>
-<li>tBodyGyroJerk-XYZ</li>
-<li>tBodyAccMag</li>
-<li>tGravityAccMag</li>
-<li>tBodyAccJerkMag</li>
-<li>tBodyGyroMag</li>
-<li>tBodyGyroJerkMag</li>
-<li>fBodyAcc-XYZ</li>
-<li>fBodyAccJerk-XYZ</li>
-<li>fBodyGyro-XYZ</li>
-<li>fBodyAccMag</li>
-<li>fBodyAccJerkMag</li>
-<li>fBodyGyroMag</li>
-<li>fBodyGyroJerkMag</li>
-</ul>
-<p>The set of variables that were estimated from these signals are:</p>
-<ul>
-<li>mean(): Mean value</li>
-<li>std(): Standard deviation</li>
-<li>mad(): Median absolute deviation</li>
-<li>max(): Largest value in array</li>
-<li>min(): Smallest value in array</li>
-<li>sma(): Signal magnitude area</li>
-<li>energy(): Energy measure. Sum of the squares divided by the number of values.</li>
-<li>iqr(): Interquartile range</li>
-<li>entropy(): Signal entropy</li>
-<li>arCoeff(): Autorregresion coefficients with Burg order equal to 4</li>
-<li>correlation(): correlation coefficient between two signals</li>
-<li>maxInds(): index of the frequency component with largest magnitude</li>
-<li>meanFreq(): Weighted average of the frequency components to obtain a mean frequency</li>
-<li>skewness(): skewness of the frequency domain signal</li>
-<li>kurtosis(): kurtosis of the frequency domain signal</li>
-<li>bandsEnergy(): Energy of a frequency interval within the 64 bins of the FFT of each window.</li>
-<li>angle(): Angle between to vectors.</li>
-</ul>
-<p>Additional vectors obtained by averaging the signals in a signal window sample. These are used on the angle() variable:</p>
-<ul>
-<li>gravityMean</li>
-<li>tBodyAccMean</li>
-<li>tBodyAccJerkMean</li>
-<li>tBodyGyroMean</li>
-<li>tBodyGyroJerkMean</li>
-</ul>
-<p>The complete list of variables of each feature vector is available in ‘features.txt’</p>
-</div>
-<div id="transformations-on-the-data" class="section level2">
-<h2>Transformations on the Data</h2>
-<p>Refer to README.md for details on how the script works.</p>
-</div>
+<div id="readme" class="section level1">
+<h1>README</h1>
+<p>The following section describes the work that has been performed to clean up the raw data.</p>
+<ol style="list-style-type: decimal">
+<li>Training and test data sets have been combined using <code>rbind</code>. Similarly, labels and subjects of training and test data have been combined.</li>
+</ol>
+<pre class="r"><code># Read training data
+train &lt;- read.table(&quot;UCI HAR Dataset/train/X_train.txt&quot;)
+trainActLabels &lt;- read.table(&quot;UCI HAR Dataset/train/y_train.txt&quot;)
+trainSubjects &lt;- read.table(&quot;UCI HAR Dataset/train/subject_train.txt&quot;)
+
+# Read test data
+test &lt;- read.table(&quot;UCI HAR Dataset/test/X_test.txt&quot;)
+testActLabels &lt;- read.table(&quot;UCI HAR Dataset/test/y_test.txt&quot;)
+testSubjects &lt;- read.table(&quot;UCI HAR Dataset/test/subject_test.txt&quot;)
+
+# Combine train and test data
+all &lt;- rbind(train, test)
+allActLabels &lt;- rbind(trainActLabels, testActLabels)
+allSubjects &lt;- rbind(trainSubjects, testSubjects)</code></pre>
+<p>The resulting three data sets have been combined with <code>cbind</code> to create one data set.</p>
+<pre class="r"><code>all &lt;- cbind(all, allActLabels, allSubjects)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Names of the features have been added as column names</li>
+</ol>
+<pre class="r"><code># Get feature names from features.txt
+features &lt;- read.table(&quot;UCI HAR Dataset/features.txt&quot;)
+# Add column names
+names(all) &lt;- c(as.character(features[,2]), &quot;ActivityLabels&quot;, &quot;Subjects&quot;)</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Columns that have the words “mean” or “std” were identified using <code>grep</code> and the remaining measurements have been removed.</li>
+</ol>
+<pre class="r"><code># Find columns that contain &quot;mean&quot; or &quot;std&quot; in their names
+meanCol &lt;- grep(&quot;mean&quot;, names(all))
+stdCol &lt;- grep(&quot;std&quot;, names(all))
+# Use unique just in case there are duplicates. Keep last two columns for activity labels and subjects
+col &lt;- unique(c(meanCol, stdCol, ncol(all)-1, ncol(all))) 
+
+df &lt;- all[,col]</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Activity numbers have been replaced with names by merging the data frame from the previous step with “activity_labels.txt”.</li>
+</ol>
+<pre class="r"><code>actLabels &lt;- read.table(&quot;UCI HAR Dataset/activity_labels.txt&quot;)
+df &lt;- merge(df, actLabels, by.x = &quot;ActivityLabels&quot;, by.y=&quot;V1&quot;)
+# Matched columns (w/ activity numbers) becomes the first column, delete it
+df &lt;- df[,-1]
+# Change the new activity labels column name
+names(df)[ncol(df)] &lt;- &quot;ActivityLabels&quot;</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Using <code>reshape2</code> library the data frame has been <code>melt</code>ed to have rows by subject and activity. Then <code>dcast</code>ed to take average of each variable for each activity and each subject. Last, the final data frame has been written to .txt file.</li>
+</ol>
+<pre class="r"><code>library(reshape2)
+allMelted &lt;- melt(df, id=c(&quot;Subjects&quot;, &quot;ActivityLabels&quot;))
+# Taking the average of all values for each activity and subject combination.
+df2 &lt;- dcast(allMelted, Subjects + ActivityLabels ~ variable, mean)
+
+write.table(df2, &quot;df2.txt&quot;, row.name=FALSE)</code></pre>
 </div>
 
 
